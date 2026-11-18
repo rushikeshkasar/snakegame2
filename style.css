@@ -1,0 +1,33 @@
+/* Play Hub – shared styles. Palette: sky #f4f8ff, blue #3b82f6, amber #f59e0b, ink #1e293b */
+:root{--bg:#f4f8ff;--card:#fff;--ink:#1e293b;--muted:#64748b;--blue:#3b82f6;--amber:#f59e0b;--line:#dbe5f3}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+.nav{position:sticky;top:0;z-index:10;display:flex;flex-wrap:wrap;gap:.25rem;align-items:center;padding:.6rem 1rem;background:var(--ink)}
+.nav .brand{color:var(--amber);font-weight:800;margin-right:auto;text-decoration:none;font-size:1.1rem}
+.nav a{color:#e2e8f0;text-decoration:none;padding:.35rem .7rem;border-radius:999px;font-size:.95rem}
+.nav a:hover{background:#334155}.nav a.active{background:var(--blue);color:#fff}
+.wrap{max-width:760px;margin:0 auto;padding:1.2rem 1rem 3rem;text-align:center}
+h1{margin:.3rem 0}.hud{font-size:1.1rem;margin:.2rem 0 .6rem}
+.stage{position:relative;width:min(100%,360px);margin:0 auto;border-radius:14px;overflow:hidden;box-shadow:0 6px 20px #1e293b33;background:#fff}
+.stage.wide{width:min(100%,480px)}
+canvas{display:block;width:100%;height:auto;touch-action:none}
+.overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;background:#1e293bcc;color:#fff;padding:1rem}
+.overlay[hidden]{display:none}.overlay h2{margin:0;font-size:1.8rem}.overlay p{margin:0}
+.overlay input{padding:.5rem;border-radius:8px;border:0;font-size:1rem;text-align:center;width:11rem}
+.controls{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin:1rem 0 .5rem}
+.btn{background:var(--blue);color:#fff;border:0;border-radius:10px;padding:.6rem 1.1rem;font-size:1rem;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block}
+.btn:hover{filter:brightness(1.1)}.btn.alt{background:var(--amber);color:#1e293b}
+.hint{color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1.5rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1.2rem;text-decoration:none;color:inherit;transition:transform .15s}
+.card:hover{transform:translateY(-4px)}.card .ico{font-size:2.4rem}.card h3{margin:.3rem 0}.card p{margin:0;color:var(--muted)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1rem 1.3rem;margin:1rem 0;text-align:left}
+table{width:100%;border-collapse:collapse}th,td{padding:.4rem .5rem;border-bottom:1px solid var(--line);text-align:left}th{color:var(--muted);font-size:.85rem}
+/* Chess board */
+.board{display:grid;grid-template-columns:repeat(8,1fr);aspect-ratio:1}
+.sq{display:flex;align-items:center;justify-content:center;font-size:min(8.5vw,42px);cursor:pointer;user-select:none;position:relative;line-height:1}
+.sq.l{background:#eef2f9}.sq.d{background:#8fb0e0}
+.sq.sel{background:#fcd34d!important}.sq.chk{background:#f87171!important}
+.sq.t::after{content:"";width:28%;height:28%;border-radius:50%;background:#1e293b55;position:absolute}
+.sq.t.cap::after{width:88%;height:88%;background:none;border:3px solid #1e293b66}
+.pw{color:#fff;text-shadow:0 0 2px #000,0 0 2px #000,0 0 1px #000}.pb{color:#1e293b}

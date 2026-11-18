@@ -1,0 +1,25 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Leaderboard – Play Hub</title><link rel="stylesheet" href="css/style.css"></head><body><div id="nav"></div><main class="wrap">
+<h1>🏆 Leaderboard</h1><p class="hint">Scores are saved in this browser only.</p><div id="boards"></div>
+<button class="btn alt" id="clr">Clear all scores</button>
+</main><script src="js/common.js"></script><script>
+/* Build one table per game from localStorage. Chess ranks players by total wins. */
+const GAMES=[["flappy","🐤 Flappy Hop","Score"],["snake","🐍 Snake","Score"],["cricket","🏏 Slam Over","Runs"],["chess","♟️ Chess","Wins"]];
+function render(){
+  const root=$("boards"); root.innerHTML="";
+  for(const [g,title,label] of GAMES){
+    let rows=Arcade.top(g);
+    if(g==="chess"){ const w={}; (Arcade.all().chess||[]).forEach(r=>w[r.name]=(w[r.name]||0)+1);
+      rows=Object.entries(w).map(([name,score])=>({name,score,date:""})).sort((a,b)=>b.score-a.score).slice(0,10); }
+    const d=document.createElement("div"); d.className="panel";
+    const h=document.createElement("h3"); h.textContent=title; d.appendChild(h);
+    if(!rows.length){ const p=document.createElement("p"); p.className="hint"; p.textContent="No scores yet — go play!"; d.appendChild(p); }
+    else { const t=document.createElement("table"); t.innerHTML="<tr><th>#</th><th>Player</th><th>"+label+"</th><th>Date</th></tr>";
+      rows.forEach((r,i)=>{ const tr=document.createElement("tr");
+        [i+1,r.name,r.score,r.date].forEach(v=>{const td=document.createElement("td"); td.textContent=v; tr.appendChild(td);}); t.appendChild(tr); });
+      d.appendChild(t); }
+    root.appendChild(d);
+  }
+}
+$("clr").onclick=()=>{ if(confirm("Delete all saved scores?")){ Arcade.clear(); render(); } };
+render();
+</script></body></html>
